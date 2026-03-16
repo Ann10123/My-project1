@@ -8,6 +8,8 @@ public class Collectible2D : MonoBehaviour
     public float rotationSpeed = 0.5f;
     public GameObject onCollectEffect;
 
+    public AudioClip collectSound;
+
     // Update is called once per frame
     void Update()
     {
@@ -20,7 +22,12 @@ public class Collectible2D : MonoBehaviour
         
          // Check if the other object has a PlayerController2D component
         if (other.GetComponent<PlayerController2D>() != null) {
-            
+
+            if (collectSound != null)
+            {
+                AudioSource.PlayClipAtPoint(collectSound, transform.position);
+            }
+
             // Destroy the collectible
             Destroy(gameObject);
 
